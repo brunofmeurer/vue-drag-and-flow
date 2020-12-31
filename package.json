@@ -1,0 +1,57 @@
+{
+  "name": "vue-drag-and-flow",
+  "version": "1.0.0",
+  "description": "A beautiful flowchart maker made with vuejs turned to status machine and process automation",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sonyzach/usfm-validator.git"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "core-js": "^3.8.1",
+    "jq-simple-connect": "^1.0.0",
+    "perfect-arrows": "^0.3.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-lineto": "^3.2.0",
+    "vue": "^2.6.11",
+    "vuera": "^0.2.7",
+    "vuex": "^3.6.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
