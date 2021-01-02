@@ -17,9 +17,27 @@ npm install vue-drag-and-flow -v
 ```
 
 ## Code
-```
-import vueDragAndFlow from 'vue-drag-and-flow'
+```javascript
+<template>
+  <div style=" display: flex;">
+  </div>
+</template>
 
+<script>
+import { DragArea, NodeClone } from 'vue-drag-and-flow'
+
+export default {
+  components: {
+    DragArea,
+    NodeClone
+  },
+  data () {
+    return {
+      objects: []
+    }
+  }
+}
+</script>
 
 ```
 
@@ -31,10 +49,10 @@ import vueDragAndFlow from 'vue-drag-and-flow'
 - [ ] Templates and slots
 - [ ] Color set
 - [ ] Feedbacks on select items / rows
-- [ ] Virtualization state machine
+- [ ] Running state machine
 - [ ] Create other demos
 - [ ] Resize two options node
-- [ ] two or more options
+- [ ] two or more options like switch case
 
 
 ## Project setup
