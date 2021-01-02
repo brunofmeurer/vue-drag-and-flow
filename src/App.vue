@@ -1,7 +1,7 @@
 <template>
   <div id="app" style=" display: flex;">
-    <div style="top: 50px; left: 0; z-index: 999; background-color: #191A28; padding: 5px">
-      <span style="color: white;">Objects</span>
+    <div :style="`top: 50px; left: 0; z-index: 999; background-color: ${colors[selectColor].menu}; padding: 5px; color:${colors[selectColor].textColor};`">
+      <span>Objects</span>
       <div class="grid" style="position: static; margin: 5px">
         <NodeClone
           v-for="(node2, index) in nodeObjects"
@@ -17,12 +17,20 @@
           :noStatus="node2.noStatus"
           @drag="(value) => drag = value"
           :clone="true"
-          :group="'group'"
-          style="margin-top: 1px"
+          :group="group"
+          :color="colors[selectColor].nodeClone"
+          :style="`margin-top: 1px;`"
         />
       </div>
+      colors
+      <button v-for="(color, index) in colors" v-bind:key="index" @click="selectColor = index"> {{color.name}}</button>
     </div>
-    <DragArea></DragArea>
+    <DragArea
+      :group="group"
+      :nodeColorBackground="colors[selectColor].node"
+      :lineColor="colors[selectColor].line"
+      :style="`background-color:${colors[selectColor].dropArea};color:${colors[selectColor].textColor};`"
+    ></DragArea>
   </div>
 </template>
 
@@ -34,6 +42,40 @@ export default {
   data () {
     return {
       drag: true,
+      group: 'group',
+      colors: [
+        {
+          name: 'dark',
+          nodeClone: '#303030',
+          node: '#303030',
+          nodeStatus: '#424242',
+          dropArea: '#424242',
+          menu: '#212121',
+          textColor: '#fff',
+          line: '#fff'
+        },
+        {
+          name: 'dark blue',
+          nodeClone: '#3C4973',
+          node: '#3C4973',
+          nodeStatus: '#343A3F',
+          dropArea: '#2A3456',
+          menu: '#191A28',
+          textColor: '#fff',
+          line: '#fff'
+        },
+        {
+          name: 'white',
+          nodeClone: '#fff',
+          node: '#fff',
+          nodeStatus: '#343A3F',
+          dropArea: '#fff',
+          menu: '#F6F8FA',
+          textColor: '#404453',
+          line: '#000'
+        }
+      ],
+      selectColor: 1,
       nodeObjects: [
         {
           icon: 'play',

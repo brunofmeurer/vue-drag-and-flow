@@ -2,7 +2,7 @@
   <path 
     v-if="fromElement && toElement"
     :stroke-dasharray="dasharray" 
-    :d="`${mountPath()}`" :stroke="color" :stroke-width="lineWidth" fill="none" class="line2breaks"
+    :d="`${mountPath()}`" :stroke="color" :stroke-width="lineWidth" fill="none" class="selected"
     :marker-end="this.to.node ? 'url(#triangle)' : ''"/>
 </template>
 

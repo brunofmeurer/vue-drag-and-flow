@@ -2,7 +2,10 @@
 
 ![Image of Yaktocat](./public/banner.png)
 
-A beautiful flowchart maker made with vuejs turned to status machine and process automation. Have fun :D.
+A beautiful flowchart maker, made with vuejs towards status machine and process automation. Have fun :D.
+
+## Demo
+[Demo flow maker](https://brunofmeurer.github.io/vue-drag-and-flow/)
 
 ## Using
 ```
@@ -12,6 +15,25 @@ yarn add vue-drag-and-flow
 ```
 npm install vue-drag-and-flow -v
 ```
+
+## Code
+```
+import vueDragAndFlow from 'vue-drag-and-flow'
+
+
+```
+
+
+## Todo
+- [x] Flowchart maker
+- [ ] Organize font
+- [ ] Using vuex state
+- [ ] Templates and slots
+- [ ] Color set
+- [ ] Feedbacks on select items / rows
+- [ ] Virtualization state machine
+- [ ] Create other demos
+
 
 ## Project setup
 ```

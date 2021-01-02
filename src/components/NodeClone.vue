@@ -1,6 +1,6 @@
 <template>
   <div :style="`min-height: ${height}; border-radius: 5px; border: ${drag ? '1' : '0'}px grey dashed;`">
-    <div :id="model.id" ref="node" class="node" :style="`min-width: ${width}; min-height: ${height}; top: ${model.x}px; left: ${model.y}px; ${drag ? 'position: absolute;': ''}`">
+    <div :id="model.id" ref="node" class="node" :style="`min-width: ${width}; min-height: ${height}; top: ${model.x}px; left: ${model.y}px; ${drag ? 'position: absolute;': ''} ${color ? 'background-color:' + color : ''}`">
       <div v-if="false" id="icon" :style="`background-color: ${backgroundColorIcon}; min-height: ${height}; width: 30px`">
         <font-awesome-icon :icon="model.icon" size="xs" style="margin: 4px"/>
       </div>
@@ -54,6 +54,9 @@ export default {
       default: false
     },
     group: {
+      type: String
+    },
+    color: {
       type: String
     }
   },
@@ -182,13 +185,12 @@ export default {
     display: flex;
     justify-content: flex-start;
     cursor: move;
-    background-color: #3C4973;
+    background-color: #303030;
     border-radius: 5px;
     -webkit-box-shadow: 3px 5px 11px -2px rgba(0,0,0,0.17);
     -moz-box-shadow: 3px 5px 11px -2px rgba(0,0,0,0.17);
     box-shadow: 3px 5px 11px -2px rgba(0,0,0,0.17);
     border: 0px;
-    color: white;
   }
 
   .node > #content {

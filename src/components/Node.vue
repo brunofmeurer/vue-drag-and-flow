@@ -1,5 +1,5 @@
 <template>
-  <div :id="model.id" ref="node" class="node" :style="`min-width: ${width}; min-height: ${height}; top: ${model.x}px; left: ${model.y}px;`" @click="setActive(true)">
+  <div :id="model.id" ref="node" :class="'node ' + (active ? 'selected' : '')" :style="`min-width: ${width}; min-height: ${height}; top: ${model.x}px; left: ${model.y}px; ${color ? 'background-color:' + color : ''}`" @click="setActive(true)">
     <div class="dot" :style="`background-color: ${topConnected ? '#1BA345' : '#ECF2F4'}; position: absolute; top: calc(-${sizeConnectors / 10}px - ${sizeConnectors / 2}px); left: calc(50% - ${sizeConnectors/2}px); width: ${sizeConnectors}px; height: ${sizeConnectors}px; border-radius: 50px;`" :id="model.id + 'top'" v-if="!start" @click="endLink" @drag="endLink"/>
     
     <div v-if="!end && !condition">
@@ -17,7 +17,7 @@
     </div>
 
     <div v-if="model.icon" id="icon" :style="`background-color: ${backgroundColorIcon}; min-height: ${height}; width: 30px`">
-      <font-awesome-icon :icon="model.icon" size="xs" style="margin: 7px"/>
+      <font-awesome-icon :icon="model.icon" style="margin: 7px; width: 10px;"/>
     </div>
     <div id="content" v-if="model.content">
       {{model.content}}
@@ -50,7 +50,7 @@ export default {
     },
     backgroundColorIcon: {
       type: String,
-      default: '#6D90FF'
+      default: '#555'
     },
     topConnected: {
       type: Boolean
@@ -78,6 +78,9 @@ export default {
       defalt: false
     },
     group: {
+      type: String
+    },
+    color: {
       type: String
     }
   },
@@ -161,7 +164,7 @@ export default {
     },
     getStatusColor () {
       if (this.status === 'pendent' || this.status == null)
-        return '#343A3F'
+        return '#424242'
       else if (this.status === 'error')
         return '#DE3E44'
       else if (this.status === 'success' )
@@ -180,11 +183,14 @@ export default {
     display: flex;
     justify-content: flex-start;
     cursor: move;
-    background-color: #3C4973;
+    background-color: #303030;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
     border: 0px;
-    color: white;
+  }
+
+  .selected {
+    box-shadow: rgba(255, 255, 255, 1) 0px 0px 5px;
   }
 
   .node > #content {

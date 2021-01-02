@@ -1,5 +1,5 @@
 <template>
-  <div :ref="'drop-area' + group" :class="`drop-area  ${grid ? 'drop-area-grid' : ''}`" :id="'drop-area' + group">
+  <div :ref="'drop-area' + group" :class="`drop-area`" :id="'drop-area' + group" :style="getColorGrid()">
     <Node
       v-for="(node, index) in nodes"
       v-bind:key="index"
@@ -16,6 +16,7 @@
       :start="node.start"
       :end="node.end"
       :condition="node.condition"
+      :color="nodeColorBackground"
       @startLink="startLink"
       @endLink="endLink"
       @drag="drag"
@@ -29,6 +30,7 @@
         :from="{node: nodes.find(e => e.id === link.idFrom), pos: link.posFrom}"
         :to="{node: nodes.find(e => e.id === link.idTo), pos: link.posTo}"
         :group="group"
+        :color="lineColor"
       />
       <defs>
       <marker id="triangle" viewBox="0 0 10 10"
@@ -36,7 +38,7 @@
           markerUnits="strokeWidth"
           markerWidth="10" markerHeight="10"
           orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#6B757D"/>
+        <path d="M 0 0 L 10 5 L 0 10 z" :fill="lineColor"/>
       </marker>
     </defs>
     </svg>
@@ -50,10 +52,6 @@ import LinePath from "./components/LinePath";
 export default {
   name: 'DragArea',
   props: {
-    grid: {
-      type: Boolean,
-      default: false
-    },
     group: {
       type: String,
       default: 'group'
@@ -64,8 +62,20 @@ export default {
     },
     height: {
       type: Number,
-      default: 5000
-    }
+      default: 5000,
+    },
+    nodeColorBackground: {
+      type: String,
+      default: ''
+    },
+    lineColor: {
+      type: String,
+      default: "#fff"
+    },
+    gridColor: {
+      type: String,
+      default: null
+    },
   },
   components: { 
     Node,
@@ -104,6 +114,11 @@ export default {
     },
     getNodes () {
       return this.nodes
+    },
+    getColorGrid () {
+      return `
+      background-image:
+      linear-gradient(to right, ${this.gridColor ? this.gridColor : 'transparent'} 1px, transparent 1px);`
     }
   },
   computed: {
@@ -118,18 +133,12 @@ export default {
   body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background-image: linear-gradient(#2B3557, #192037);
   }
   .drop-area {
     width: calc(100%);
     height: calc(100%);
     position: relative;
-    background-size: 20px 20px;
+    background-size: 5px 5px;
     transition: all 0.1s ease-in-out;
-  }
-  .drop-area-grid {
-    background-image:
-      linear-gradient(to right,#2b3247a1 1px, transparent 1px),
-      linear-gradient(to bottom,#2b3247a1 1px, transparent 1px);
   }
 </style>
