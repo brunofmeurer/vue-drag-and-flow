@@ -21,7 +21,12 @@
       @endLink="endLink"
       @drag="drag"
       :group="group"
+      @select="(value) => {selected = value; $emit('selected', selected)}"
+      :active="selected && selected.id === node.id"
     />
+    <span style="position: absolute; top: 40%; left: 40%; font-size: 40px" v-if="nodes.length === 0">
+      drop itens here
+    </span>
     <svg :height="height" :width="width">
       <LinePath 
         v-for="(link, index) in links"
@@ -62,7 +67,7 @@ export default {
     },
     height: {
       type: Number,
-      default: 5000,
+      default: 1000,
     },
     nodeColorBackground: {
       type: String,
@@ -83,6 +88,7 @@ export default {
   },
   data () {
     return {
+      selected: null,
       nodes: []
     }
   },
@@ -103,11 +109,16 @@ export default {
       this.$forceUpdate()
     },
     endLink (fromId, toId, link) {
-      Object.assign(this.nodes.find(e=> e.id === fromId).links.find(e => e.posFrom === document.posFrom), link)
-      this.nodes.find(e=> e.id === fromId).links = this.nodes.find(e=> e.id === fromId).links.filter(e => e.idTo !== '')
-      this.nodes.find(e=> e.id === toId).topConnected = true
-      this.nodes.find(e=> e.id === fromId).bottomConnected = true
-      this.$forceUpdate()
+      if (document.startLinkId) {
+        Object.assign(this.nodes.find(e=> e.id === fromId).links.find(e => e.posFrom === document.posFrom), link)
+        this.nodes.find(e=> e.id === fromId).links = this.nodes.find(e=> e.id === fromId).links.filter(e => e.idTo !== '')
+        this.nodes.find(e=> e.id === toId).topConnected = true
+        this.nodes.find(e=> e.id === fromId).bottomConnected = true
+
+        document.startLinkId = null
+        document.posFrom = null
+        this.$forceUpdate()
+      }
     },
     getNewId () {
       return '_' + Math.random().toString(36).substr(2, 9);

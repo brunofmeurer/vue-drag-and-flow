@@ -33,6 +33,8 @@ import vueDragAndFlow from 'vue-drag-and-flow'
 - [ ] Feedbacks on select items / rows
 - [ ] Virtualization state machine
 - [ ] Create other demos
+- [ ] Resize two options node
+- [ ] two or more options
 
 
 ## Project setup

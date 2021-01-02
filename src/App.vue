@@ -1,7 +1,7 @@
 <template>
   <div id="app" style=" display: flex;">
     <div :style="`top: 50px; left: 0; z-index: 999; background-color: ${colors[selectColor].menu}; padding: 5px; color:${colors[selectColor].textColor};`">
-      <span>Objects</span>
+      <span>Dragable objects</span>
       <div class="grid" style="position: static; margin: 5px">
         <NodeClone
           v-for="(node2, index) in nodeObjects"
@@ -24,12 +24,15 @@
       </div>
       colors
       <button v-for="(color, index) in colors" v-bind:key="index" @click="selectColor = index"> {{color.name}}</button>
+      <br>
+      {{selected}}
     </div>
     <DragArea
       :group="group"
       :nodeColorBackground="colors[selectColor].node"
       :lineColor="colors[selectColor].line"
       :style="`background-color:${colors[selectColor].dropArea};color:${colors[selectColor].textColor};`"
+      @selected="(value) => selected = value"
     ></DragArea>
   </div>
 </template>
@@ -43,6 +46,7 @@ export default {
     return {
       drag: true,
       group: 'group',
+      selected: null,
       colors: [
         {
           name: 'dark',
@@ -75,7 +79,7 @@ export default {
           line: '#000'
         }
       ],
-      selectColor: 1,
+      selectColor: 0,
       nodeObjects: [
         {
           icon: 'play',

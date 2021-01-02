@@ -1,5 +1,5 @@
 <template>
-  <div :id="model.id" ref="node" :class="'node ' + (active ? 'selected' : '')" :style="`min-width: ${width}; min-height: ${height}; top: ${model.x}px; left: ${model.y}px; ${color ? 'background-color:' + color : ''}`" @click="setActive(true)">
+  <div :id="model.id" ref="node" :class="'node ' + (active ? 'selected' : '')" :style="`min-width: ${width}; min-height: ${height}; top: ${model.x}px; left: ${model.y}px; ${color ? 'background-color:' + color : ''}`" @click="$emit('select', model)">
     <div class="dot" :style="`background-color: ${topConnected ? '#1BA345' : '#ECF2F4'}; position: absolute; top: calc(-${sizeConnectors / 10}px - ${sizeConnectors / 2}px); left: calc(50% - ${sizeConnectors/2}px); width: ${sizeConnectors}px; height: ${sizeConnectors}px; border-radius: 50px;`" :id="model.id + 'top'" v-if="!start" @click="endLink" @drag="endLink"/>
     
     <div v-if="!end && !condition">
@@ -82,6 +82,10 @@ export default {
     },
     color: {
       type: String
+    },
+    active: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -91,8 +95,7 @@ export default {
       pos2: 0,
       pos3: 0,
       pos4: 0,
-      sizeConnectors: 6,
-      active: false
+      sizeConnectors: 6
     }
   },
   watch: {
@@ -169,9 +172,6 @@ export default {
         return '#DE3E44'
       else if (this.status === 'success' )
         return '#1BA345'
-    },
-    setActive (active) {
-      this.active = active
     }
   }
 }
@@ -191,6 +191,9 @@ export default {
 
   .selected {
     box-shadow: rgba(255, 255, 255, 1) 0px 0px 5px;
+    border: 2px rgb(66, 66, 66) solid;
+    border-radius: 7px;
+    transform: translate(-2px);
   }
 
   .node > #content {
