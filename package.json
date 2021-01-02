@@ -2,8 +2,19 @@
   "name": "vue-drag-and-flow",
   "version": "1.0.0",
   "description": "A beautiful flowchart maker made with vuejs turned to status machine and process automation",
+  "main": "./dist/vue-drag-and-flow.common.js",
+  "files": [
+    "dist/*",
+    "src*",
+    "public/*",
+    "*.json",
+    "*.js",
+    "*.css"
+  ],
+  "sideEffects": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "build-bundle": "vue-cli-service build --target lib --name vue-drag-and-flow ./src/index.js --skip-plugins @vue/cli-plugin-eslint",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -47,7 +58,8 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {},
+    "ignorePatterns": [ "dist/**" ] 
   },
   "browserslist": [
     "> 1%",

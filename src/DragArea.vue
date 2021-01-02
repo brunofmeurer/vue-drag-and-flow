@@ -141,15 +141,5 @@ export default {
 </script>
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-  }
-  .drop-area {
-    width: calc(100%);
-    height: calc(100%);
-    position: relative;
-    background-size: 5px 5px;
-    transition: all 0.1s ease-in-out;
-  }
+ 
 </style>
