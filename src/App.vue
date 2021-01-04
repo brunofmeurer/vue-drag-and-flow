@@ -1,6 +1,6 @@
 <template>
   <div id="app" style=" display: flex;">
-    <div :style="`top: 50px; left: 0; z-index: 999; background-color: ${colors[selectColor].menu}; padding: 5px; color:${colors[selectColor].textColor};`">
+    <div :style="`top: 50px; left: 0; z-index: 999; background-color: ${colors[selectColor].menu}; padding: 5px; color:${colors[selectColor].textColor}; max-width: 300px;`">
       <span>Dragable objects</span>
       <div class="grid" style="position: static; margin: 5px">
         <NodeClone

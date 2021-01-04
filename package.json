@@ -14,6 +14,7 @@
   "sideEffects": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "yarn serve",
     "build-bundle": "vue-cli-service build --target lib --name vue-drag-and-flow ./src/index.js --skip-plugins @vue/cli-plugin-eslint",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
